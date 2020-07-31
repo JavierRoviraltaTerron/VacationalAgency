@@ -9,7 +9,8 @@ using VacationalAgency.BusinessLogic.Models;
 
 namespace VacationalAgency.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class HolidayHomeOwnerController : ControllerBase
     {

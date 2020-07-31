@@ -30,6 +30,12 @@ namespace VacationalAgency.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("CorsApi", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddAutoMapper(typeof(AutoMapping));
             services.AddControllers();
             services.AddTransient<IHolidayHomeOwnerService, HolidayHomeOwnerService>();
@@ -44,9 +50,12 @@ namespace VacationalAgency.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsApi");
 
             app.UseAuthorization();
 
